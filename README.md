@@ -41,6 +41,8 @@
 
 ## 🌐 Access ArgoCD with NodePort Service
 
+### access using http://node-port-ip:Port
+
 ### 🔹 In ArgoCD UI:
 - **Click on Create App**  
 - **App Name**: `hema`  
