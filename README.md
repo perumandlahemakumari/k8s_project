@@ -57,6 +57,9 @@
 ### 🎯 Destination:
 - **Cluster URL**: `http://kubernetes.default.svc`
 
+![Screenshot 2025-06-07 152612](https://github.com/user-attachments/assets/b3c71910-f829-4e30-9c77-adb9399d9494)
+
+
 ```bash
 25. kubectl get all
 ```
@@ -77,3 +80,6 @@
 ```bash
 27. kubectl get po
 ```
+
+![Screenshot 2025-06-07 151638](https://github.com/user-attachments/assets/77cbcae8-6692-4896-bd92-c41ba700ab8b)
+
