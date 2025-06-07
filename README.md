@@ -20,20 +20,26 @@
 11. kubectl version
 12. kops version
 13. export KOPS_STATE_STORE=s3://hema.kops.v1
-14. kops create cluster --name hema.k8s.local --zones ap-south-1a --control-plane-size t2.large --node-size t2.medium
-15. kops update cluster --name hema.k8s.local --yes --admin
-16. kubectl get nodes
-17. curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-18. chmod 700 get_helm.sh
-19. ./get_helm.sh
-20. helm version
-21. helm repo add twomartens https://repo.2martens.de/charts
-22. helm install my-argocd twomartens/argocd --version 0.1.1
-23. helm repo update
-24. kubectl create namespace argocd
+14. kops create cluster --name hema.k8s.local --zones ap-south-1a --master-size t2.large --node-size t2.medium
+15. kops update cluster --name hema.k8s.local --yes
+16. kops rolling-update cluster --name hema.k8s.local --yes
+17. kops export kubecfg --name hema.k8s.local
+18. kubectl get nodes
+19. kubectl create namespace argocd
+20. kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argocd/v2.11.3/manifests/install.yaml
+21. kubectl get crds | grep argoproj.io
+22. kubectl get all -n argocd
+23. kubectl expose service argocd-server \
+  --type=NodePort \
+  --name=argocd-server-np \
+  --target-port=8080 \
+  --port=80 \
+  -n argocd
+24. kubectl get all -n argocd
+25. kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
-## 🌐 Access ArgoCD with LoadBalancer DNS
+## 🌐 Access ArgoCD with NodePort Service
 
 ### 🔹 In ArgoCD UI:
 - **Click on Create App**  
